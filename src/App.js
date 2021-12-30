@@ -1,10 +1,12 @@
-import './App.css';
-import Background from './components/background.js'
+import Background from './components/background.js';
+import InputModal from './components/inputModal.js';
 
 function App() {
   return (
     <div className="App">
-      <Background />
+      <Background>
+        <InputModal />
+      </Background>
     </div>
   );
 }

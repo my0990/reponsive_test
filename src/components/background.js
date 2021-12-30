@@ -33,14 +33,32 @@ const Cannon = styled.div`
     bottom: 0;
     @media screen and (min-width: 768px){
         height: 250px;
-        
     }
 `
-function Background(){
+
+const CannonButton = styled.div`
+    width: 5%;
+    height: 10%;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    border-radius: 100%;
+    cursor: pointer;
+    @media screen and (min-width: 768px){
+        width: 55px;
+        height: 55px;
+        bottom: 40px;
+    }
+    
+`
+function Background({children}){
     return(
         <Container>
            <Cannon />
            {window.innerHeight}
+           <CannonButton onClick={()=>{alert('clicked')}}/>
+           {children}
         </ Container>
     )
 }
