@@ -68,13 +68,15 @@ const CannonBall = styled.div`
         transform: translate(-50%);
     }
 `
-function Background({children, isStarted}){
+function Background({children, isStarted, isFirstClicked, setIsFirstClicked, setToggle, click}){
+
     return(
         <Container>
-           <CannonBall/>
+            {!isFirstClicked ? <CannonBall/> : null}
+           
            <Cannon />
            {window.innerHeight}
-           {isStarted ? <CannonButton onClick={()=>{alert('clicked')}}/> : null }
+           {isStarted ? <CannonButton onClick={()=>{click()}}/> : null }
            {children}
         </ Container>
     )
