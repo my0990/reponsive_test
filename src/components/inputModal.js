@@ -4,6 +4,7 @@ import {useState, useCallback, useRef, useEffect} from 'react';
 
 
 
+
 const Container = styled.div`
     user-select: none;
     width: 50%;
@@ -93,6 +94,7 @@ function InputModal({setLastNumber, isStarted, setIsStarted}){
     const [isKeyDown,setIsKeyDown] = useState(false);
     const [text,setText] = useState('');
     const inputRef = useRef();
+
     const start = () => {
         //버튼 눌렀을때
         setLastNumber(text);
