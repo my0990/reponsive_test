@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import button from '../img/button.png'
-import {useState} from 'react';
+import {useState, useCallback} from 'react';
+
 
 
 const Container = styled.div`
@@ -26,6 +27,7 @@ const Container = styled.div`
     .input {
         width: 10%;
         height: 5px;
+        font-size: 1em;
     }
     @media screen and (min-width: 768px){
         width: 800px;
@@ -84,26 +86,39 @@ const Button = styled.div`
 
     
 `
-const test = (e) => {
-    if( e.key === "Enter"){
-    
-    alert("enter keypressed")
-    }
-}
 
 
-function InputModal(){
+
+function InputModal({setLastNumber, isStarted, setIsStarted}){
     const [isKeyDown,setIsKeyDown] = useState(false);
+    const [text,setText] = useState('');
+    
+    const start = () => {
+        //버튼 눌렀을때
+        setLastNumber(text);
+        setIsStarted(true);
+    }
+    const onChange = (e) => {
+        setText(e.target.value)
+    };
+    const test = (e) => {
+        if( e.key === "Enter"){
+        start();
+        }
+    };
+    if(!isStarted){
     return (
         <Container>
             <h1 className='h1'>마지막 번호가 몇 번인가요?</h1>
             <div style={{textAlign:'center', position: 'relative', height: '55px'}}>
-                <input className='input' onKeyPress={(e)=>{test(e)}}/>
+                <input type='number' value={text} className='input' onKeyPress={(e)=>{test(e)}} onChange={onChange}/>
                 <label>번</label>
             </div>
-            <Button className={isKeyDown?  'test' : ''} onMouseDown={()=>{setIsKeyDown(!isKeyDown)}} onMouseUp={()=>{setIsKeyDown(!isKeyDown)}} onMouseOut={()=>{setIsKeyDown(false)}} />
+            <Button className={isKeyDown?  'test' : ''} onClick={()=>{start()}} onMouseDown={()=>{setIsKeyDown(!isKeyDown)}} onMouseUp={()=>{setIsKeyDown(!isKeyDown)}} onMouseOut={()=>{setIsKeyDown(false)}} />
         </ Container>
-    )
+    )} else {
+        return null
+    }
 }
 
 export default InputModal;

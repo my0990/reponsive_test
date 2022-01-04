@@ -50,14 +50,31 @@ const CannonButton = styled.div`
         height: 55px;
         bottom: 40px;
     }
-    
 `
-function Background({children}){
+
+const CannonBall = styled.div`
+    width: 10%;
+    height: 20%;
+    border-radius: 100%;
+    background: linear-gradient( 45deg, white, rgb(0,223,0));
+    position: absolute;
+    bottom: 20%;
+    left: 45%;
+    @media screen and (min-width: 768px){
+        width: 150px;
+        height: 150px;
+        bottom: 150px;
+        left: 50.2%;
+        transform: translate(-50%);
+    }
+`
+function Background({children, isStarted}){
     return(
         <Container>
+           <CannonBall/>
            <Cannon />
            {window.innerHeight}
-           <CannonButton onClick={()=>{alert('clicked')}}/>
+           {isStarted ? <CannonButton onClick={()=>{alert('clicked')}}/> : null }
            {children}
         </ Container>
     )
