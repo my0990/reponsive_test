@@ -4,6 +4,7 @@ import {useState} from 'react';
 
 
 const Container = styled.div`
+    user-select: none;
     width: 50%;
     height: 50%;
     border: 5px solid black;
